@@ -49,9 +49,11 @@ class Mouse:
     def move_mouse(self, next_position, graph):
         if next_position in graph.vertices[self.position]:
             self.position = next_position
+            print(f"You have moved to {self.position}")
         else:
             print("Sorry, but the move you have tried is not possible, pehaps you should move to one of the positions which are accessible from where you are right now.")
 
     def game_over(self):
         self.eaten = True
         print("Game over! You have been eaten by the cat! You better be more careful next time if you want to win.")
+        
