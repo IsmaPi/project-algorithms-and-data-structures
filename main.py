@@ -1,18 +1,24 @@
-from players import Cat, Mouse
 from graph import Graph
 from players import Cat, Mouse
+import random
 
 def main():
     # I created a graph inastance which was called from the graph file to create the graph in the main function.
     graph = Graph()
 
-    # Setting the initial cat position and the mouse position to NULL.
-    cat_position = None
-    mouse_position = None
+    # Setting the initial cat position and the mouse position to random.
+    all_positions = list(graph.vertices.keys())
+
+    position_cat = random.choice(all_positions)
+
+    # Remove the cat initial position from all positions.
+    all_positions.remove(position_cat)
+
+    position_mouse = random.choice(all_positions)
 
     # Create instances of the Cat and Mouse classes
-    cat = Cat(cat_position)
-    mouse = Mouse(mouse_position)
+    cat = Cat(position_cat)
+    mouse = Mouse(position_mouse)
 
     
 
@@ -25,14 +31,14 @@ def main():
         cat.move_towards_mouse(mouse, graph)
 
         # Check if the game is over
-        if mouse.eaten:
+        if mouse.game_over():
             print("The mouse is found the cat wins the game!!!")
             break
 
         # Mouse's turn
         print("\nMouse's turn:")
         print("Current graph:")
-        graph.print()
+        graph.print(cat.position, mouse.position)
 
         # Get the next move from the player (you can replace this with user input or a different logic)
         next_position = input("Enter the next position for the mouse: ")
@@ -41,7 +47,7 @@ def main():
         mouse.move_mouse(next_position, graph)
 
         # Im checking if the game is over
-        if mouse.eaten:
+        if mouse.game_over():
             print("Cat wins!")
             break
 
