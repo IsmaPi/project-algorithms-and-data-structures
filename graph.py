@@ -18,7 +18,16 @@ class Graph:
         for a, b in args:
             self.add_edge(a, b)
 
-    def print(self):
+    def print(self, cat_position, mouse_position):
         for k, v in self.vertices.items():
-            print(f'{k} -> {v}')
+            if k == cat_position:
+                cat_symbol = "C" 
+            else: 
+                " "
+            if k == mouse_position:
+                mouse_symbol = "M"
+            else:
+                " " 
+            
+            print(f'[{k}{cat_symbol}{mouse_symbol}] -> {v}  Cat')
 
