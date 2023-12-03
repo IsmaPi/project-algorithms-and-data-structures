@@ -38,8 +38,7 @@ Secondly, the graph.py presents us with the main class for the creation and prop
 
 ### Dependencies
 The libraries needed for the program to function correctly are: 
-random
-deque from collections
+random, deque from collections
 
 ### Executing program
 To run the program, execute the main.py program.
