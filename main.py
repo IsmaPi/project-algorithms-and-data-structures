@@ -5,7 +5,7 @@ import random
 def main():
     graph = Graph()
     # Initialize the game graph
-    graph.add_edges(...)  # Add your edges here
+    graph.add_edges(('A', 'B'), ('B', 'C'), ('C', 'D'), ('D', 'E'), ('E', 'A'), ('A', 'C'), ('B', 'D'), ('C', 'E'))
 
     # Randomly determine the initial positions of the cat and mouse
     all_positions = list(graph.vertices.keys())
@@ -16,7 +16,7 @@ def main():
     cat = Cat(position_cat)
     mouse = Mouse(position_mouse)
 
-    moves_limit = 15  # Adjust this limit as needed
+    moves_limit = 15
     for moves_num in range(1, moves_limit + 1):
         print(f"\nMove: {moves_num}")
 
@@ -40,7 +40,7 @@ def main():
             mouse.move_mouse(next_position, graph)
         else:
             print("Sorry, but the move you have tried is not possible, pehaps you should move to one of the positions which are accessible from where you are right now.")
-            continue  # Skip the rest of the loop and start the next turn
+            continue  # Skips the rest of the loop and start the next turn
 
         # Check if the cat has caught the mouse after the move
         if mouse.eaten:
