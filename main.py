@@ -3,36 +3,29 @@ from players import Cat, Mouse
 import random
 
 def main():
-    # I created a graph inastance which was called from the graph file to create the graph in the main function.
     graph = Graph()
+    # Initialize the game graph
+    graph.add_edges(...)  # Add your edges here
 
-    # Setting the initial cat position and the mouse position to random.
+    # Randomly determine the initial positions of the cat and mouse
     all_positions = list(graph.vertices.keys())
-
     position_cat = random.choice(all_positions)
-
-    # Remove the cat initial position from all positions.
     all_positions.remove(position_cat)
-
     position_mouse = random.choice(all_positions)
 
-    # Create instances of the Cat and Mouse classes
     cat = Cat(position_cat)
     mouse = Mouse(position_mouse)
 
-    
-
-    # Main game loop
     moves_limit = 15  # Adjust this limit as needed
     for moves_num in range(1, moves_limit + 1):
-        print(f"\n Move: {moves_num}")
+        print(f"\nMove: {moves_num}")
 
         # Cat's turn
         cat.move_towards_mouse(mouse, graph)
 
-        # Check if the game is over
-        if mouse.game_over():
-            print("The mouse is found the cat wins the game!!!")
+        # Check if the cat has caught the mouse
+        if mouse.eaten:
+            print("The cat has caught the mouse! The cat wins!")
             break
 
         # Mouse's turn
@@ -40,20 +33,27 @@ def main():
         print("Current graph:")
         graph.print(cat.position, mouse.position)
 
-        # Get the next move from the player (you can replace this with user input or a different logic)
-        next_position = input("Enter the next position for the mouse: ")
+        next_position = input("Enter where you want to move next: ")
 
-        # Move the mouse
-        mouse.move_mouse(next_position, graph)
+        # Move the mouse and validate the move
+        if next_position in graph.vertices[mouse.position]:
+            mouse.move_mouse(next_position, graph)
+        else:
+            print("Sorry, but the move you have tried is not possible, pehaps you should move to one of the positions which are accessible from where you are right now.")
+            continue  # Skip the rest of the loop and start the next turn
 
-        # Im checking if the game is over
-        if mouse.game_over():
-            print("Cat wins!")
+        # Check if the cat has caught the mouse after the move
+        if mouse.eaten:
+            print("The cat has caught the mouse! The cat wins!")
             break
 
-        # I'm checking if the moves limit has been exhausted
+        # Check if the move limit has been reached
         if moves_num == moves_limit:
-            print("The cat moves has been exhausted, the mouse wins!!!")
+            print("Move limit reached. The mouse wins!")
             break
 
     print("Game over.")
+
+# Make sure to call main to start the game
+if __name__ == "__main__":
+    main()
