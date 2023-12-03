@@ -12,9 +12,11 @@ class Graph:
         self.add_vertex(b)
         if b not in self.vertices[a]:
             self.vertices[a].append(b)
+        if a not in self.vertices[b]:
+            self.vertices[b].append(a)
 
     def add_edges(self, *args):
-    # args = [('A', 'B'), ('B', 'C'), ...]
+        # args = [('A', 'B'), ('B', 'C'), ...]
         for a, b in args:
             self.add_edge(a, b)
 
@@ -28,6 +30,7 @@ class Graph:
                 mouse_symbol = "M"
             else:
                 " " 
+            cat_symbol = "C" if k == cat_position else " "
+            mouse_symbol = "M" if k == mouse_position else " "
             
-            print(f'[{k}{cat_symbol}{mouse_symbol}] -> {v}  Cat')
-
+            print(f'[{k}{cat_symbol}{mouse_symbol}] -> {v}')
