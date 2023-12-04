@@ -44,6 +44,7 @@ def main():    #Worst: O(moves * (N + M + P)) Where moves are the number of move
     moves= 10
     for move in range(1, moves + 1):
         print(f"\nMove: {moves}")
+        moves -= 1
 
         cat.move_towards_mouse(mouse, graph)
         
