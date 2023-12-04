@@ -25,7 +25,7 @@ Firstly, within players.py, we can first see a breath-first search algorithm, wh
         
       - move_mouse: takes the next_position and the graph. If the next_position is a node in the graph connected to the current node the player is in, the position is updated and prints a message to communicate to the user that they have moved and where they have moved. If the node inputted is not accessible, an error message is shown.
         
-      - game_over: when called, it sets a variable self.eaten to true and prints a game-over message to the user.
+      - game_over: when called, it sets a variable self.eaten to true.
 
 Secondly, the graph.py presents us with the main class for the creation and properties of a graph. 
 
@@ -38,6 +38,14 @@ Secondly, the graph.py presents us with the main class for the creation and prop
   - add_edges: It takes the *args, which each represents a connection between nodes as a tuple [A, B], and calls the add_edge for each tuple and adds the connection.
     
   - print: it takes the cat_position and mouse_position and prints the graph by going over the nodes. If the node has the cat, it adds a 'C', and if it has the mouse, it adds an 'M'. Otherwise, it just adds a space. Finally, it prints each node with the corresponding symbol and the adjacent nodes.
+
+Finally, in main, we can find three functions: is_min_distance, set_starting_positions, and main.
+
+  - is_min_distance takes the graph, the start, the end, and the minimum distance between the cat and the mouse. This is very important as if it was not taken into account, there could be cases where the cat and mouse aren't far enough to be able to play since the cat could kill the mouse instantly. To do this, it calls the bfs function to calculate the shortest path and compares its length to the minimum length.
+    
+  - set_starting_positions takes the graph to then take the nodes and generate two random starting positions to the cat and mouse, but it checks if the positions are far enough by using the function is_min_distance. If it is, it just assigns the positions to the cat and mouse. If not, the process starts over, and new initial positions are generated until it passes the is_min_distance check.
+    
+  - The main is where everything occurs. First, the graph and the initial positions are generated using the Graph class and the set_starting_positions function. Once that is done, the maximum number of turns is defined, and it's the cat's turn. It uses the Cat class, running over it, and once the cat has moved, it checks if the new location is the same as the mouse location. If it is, the mouse loses. If the mouse is still alive, it shows the graph and prompts the user to enter a new move for the Mouse. Once the input of the user is accepted, the loop starts again. 
 
 # Data Structures
 
