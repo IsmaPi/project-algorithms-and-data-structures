@@ -41,7 +41,7 @@ def main():    #Worst: O(moves * (N + M + P)) Where moves are the number of move
     cat = Cat(position_cat)
     mouse = Mouse(position_mouse)
 
-    moves= 10
+    moves = 10
     for move in range(1, moves + 1):
         print(f"\nMove: {moves}")
         moves -= 1
