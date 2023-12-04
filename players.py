@@ -1,7 +1,7 @@
 from collections import deque
 
 
-def bfs(graph, source, dest):    #Worst: O(M*N) where M is the number of connections and N is the number of nodes. Average: O(M*N), but depends on the size of the graph
+def bfs(graph, source, dest):    #Worst: O(M + N) where M is the number of connections and N is the number of nodes. Average: O(M + N), but depends on the size of the graph
     queue = deque()  
     visited = set()  
     parent = {source: None}
