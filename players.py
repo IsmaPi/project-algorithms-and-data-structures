@@ -1,7 +1,7 @@
 from collections import deque
 
 
-def bfs(graph, source, dest):    #Best: O(1) Worst: O(M*N) where M is the number of nodes and N is the number of connections Average: Depending on the size of the graph, but it would be between O(1) and O(M*N)
+def bfs(graph, source, dest):    #Worst: O(M*N) where M is the number of connections and N is the number of nodes. Average: O(M*N), but depends on the size of the graph
     queue = deque()  
     visited = set()  
     parent = {source: None}
@@ -26,10 +26,10 @@ def bfs(graph, source, dest):    #Best: O(1) Worst: O(M*N) where M is the number
 
 
 class Cat:
-    def __init__(self, position):    #Best: O(1) Worst: O(1) Average: O(1)
+    def __init__(self, position):    #Worst: O(1) Average: O(1)
         self.position = position
 
-    def move_towards_mouse(self, mouse, graph):    #Best: O(1) Worst: O(M*N) where M is the number of nodes and N is the number of connections Average: Depending on the size of the graph, but it would be between O(1) and O(M*N) (same as the BFS function)
+    def move_towards_mouse(self, mouse, graph):    #Worst: O(M*N) where M is the number of connections and N is the number of nodes. Average: O(M*N), but depends on the size of the graph (same as the BFS function)
     queue = deque()  
         path = bfs(graph, self.position, mouse.position)
         if path and len(path) > 1:
@@ -42,18 +42,17 @@ class Cat:
 
 
 class Mouse:
-    def __init__(self, position):    #Best: O(1) Worst: O(1) Average: O(1)
+    def __init__(self, position):    #Worst: O(1) Average: O(1)
         self.position = position
         self.eaten = False
 
-    def move_mouse(self, next_position, graph):    #Best: O(1) Worst: O(N) where N is the number of adjacent nodes Average: O(N) where N is the number of adjacent nodes
+    def move_mouse(self, next_position, graph):    #Worst: O(N) where N is the number of adjacent nodes. Average: O(N)
         if next_position in graph.vertices[self.position]:
             self.position = next_position
-            print(f"You have moved to {self.position}")
+            print(f"You try to escape the cat! You have moved to {self.position}")
         else:
             print("Sorry, but the move you have tried is not possible, perhaps you should move to one of the positions which are accessible from where you are right now.")
 
-    def game_over(self):    #Best: O(1) Worst: O(1) Average: O(1)
+    def game_over(self):    #Worst: O(1) Average: O(1)
         self.eaten = True
-        print("Game over! You have been eaten by the cat! You better be more careful next time if you want to win.")
         
