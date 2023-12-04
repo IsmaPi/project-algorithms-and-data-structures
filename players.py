@@ -30,7 +30,7 @@ class Cat:
         self.position = position
 
     def move_towards_mouse(self, mouse, graph):    #Worst: O(M + N) where M is the number of connections and N is the number of nodes. Average: O(M + N), but depends on the size of the graph (same as the BFS function)
-    queue = deque()  
+        queue = deque()  
         path = bfs(graph, self.position, mouse.position)
         if path and len(path) > 1:
             self.position = path[1]
