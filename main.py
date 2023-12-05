@@ -72,7 +72,7 @@ def main():    #Worst: O(moves * (N + M + P)) Where moves are the number of move
             print("The cat has caught the mouse! The cat wins!")
             break
 
-        if moves == move:
+        if moves == 0:
             print("You have managed to defeat the cat! You live to fight another day.")
             break
 
